@@ -1,8 +1,9 @@
 ---
 title: "How to quickly create an R-package"
-author: "Gerko Vink and Hanne Oberman"
-orcid: 0000-0001-9767-1924 # Gerko
-date: 23 February 2023
+author: 
+ - name: "Gerko Vink"
+ - name: "Hanne Oberman"
+date: "12/03/2025"
 #bibliography: bibliography.bib
 #link-citations: true
 format: 
@@ -16,15 +17,22 @@ format:
 [![DOI](https://zenodo.org/badge/601148138.svg)](https://zenodo.org/badge/latestdoi/601148138)<br>
 
 [Watch the recording here](https://www.dropbox.com/s/5lqwsn63v93f5dn/rpackage-00.00.17.848-00.56.25.896.mp4?dl=0)
-Disclaimer: I've made an error by removing the `GitHub` repo `roundR` that I created in the exercise materials and re-creating it in my account with the exact same `roundR` name during the lecture. That is why `Zenodo` does not accept it a second time for a DOI. This makes sense, as you would not want to create a new DOI for content with the same name at the same location, nor use the same DOI for content with different time codes and temporal origin. For your repository, however, this would not be an issue. 
 
+::: callout-warning
+Disclaimer: In the recording, there's an error, caused by removing the `GitHub` repo `roundR` that was created in the exercise materials and re-creating it with the exact same `roundR` name during the lecture. That is why `Zenodo` does not accept it a second time for a DOI. This makes sense, as you would not want to create a new DOI for content with the same name at the same location, nor use the same DOI for content with different time codes and temporal origin. For your repository, however, this would not be an issue. 
+:::
 ---
 
 
-# Pre-requisites
-It is much easier to create, manage and co-develop an R-package when you incorporate it into a distributed version control system like [Git](https://git-scm.com). The extension to a software development hosting service like [GitHub](https://github.com) is then a natural one. Although there are other procedures, devops systems and hosting services that may lend itself for package development, we outline the workflow with `Git` and `GitHub`. We also assume that you have [`RStudio`](https://posit.co/products/open-source/rstudio/) installed. 
+# `R` package development workflow
 
-## Install `Git`
+It is much easier to create, manage and co-develop an `R` package when you incorporate it into a distributed version control system like [Git](https://git-scm.com). The extension to a software development hosting service like [GitHub](https://github.com) is then a natural one. Although there are other procedures and [DevOps](https://en.wiktionary.org/wiki/DevOps#Noun) systems and hosting services that may lend itself for package development, we outline the workflow with `Git` and `GitHub`. We also assume that you have [`RStudio`](https://posit.co/products/open-source/rstudio/) installed. 
+
+<details>
+<summary>Assumed prior knowlegde</summary>
+
+**Recap on `Git`**
+
 `Git` is a free and open source version control system for text files. It can handle extensive change logging for you, no matter the size of the project. `Git` is fast and efficient, but its effectiveness depends also on the frequency you instruct it to log your project's changes. 
 
 You can see `Git` as a blank canvas that starts at a certain point in time. Every time you (or others) instruct `Git` to log any changes that have been made, `Git` adds the changes that are made to this canvas. We call the changes to the canvas [`commits`](https://help.github.com/articles/github-glossary/#commit). With every `commit` an extensive log is created that includes at least the following information:
@@ -38,42 +46,55 @@ The difference between two commits - or the changes between them - are called [`
 
 If you'd like to know much more about `Git`, [this online book](https://git-scm.com/book/en/v2) is a very good resource. If you'd like to practice with the command line interface [use this webpage](https://learngitbranching.js.org) for a quick course. [This book](https://happygitwithr.com) covers pretty much everything you need to marry `Git` and `R`. 
 
-### Installing on Mac
-I suggest you install `Git` by downloading and installing [`GitHub Desktop`](https://desktop.github.com). `GitHub`'s desktop application is a nice GUI and, naturally, integrates well into the repository workflow on `GitHub`. 
+**Why GitHub**
 
-When installed, you can go to `GitHub Desktop > Install Command Line Tool`
-
-After a reboot, all should be set. 
-
-### Installing on Windows
-Download and install [`Git for Windows`](https://gitforwindows.org), Then download and install [`GitHub Desktop`](https://desktop.github.com). `GitHub`'s desktop application is a nice GUI and, naturally, integrates well into the repository workflow on `GitHub`. 
-
-After a reboot, all should be set. 
-
-## Create a GitHub account
 `GitHub` is the social and user interface to `Git` that allows you to work in [repositories](https://help.github.com/articles/github-glossary/#repository). These repositories can be seen as project folders in which you publish your work, but you can also use them as test sites for development, testing, etcetera. There is a distinction between [private repositories](https://help.github.com/articles/github-glossary/#private-repository) (only for you and those you grant access) and public repositories (visible for everyone). 
 
 Your public repositories can be viewed and [forked](https://help.github.com/articles/github-glossary/#fork) by everyone. `Forking` is when other people create a copy of your repository on their own account. This allows them to work on a repository without affecting the `master`. You can also do this yourself, but then the process is called [`branching`](https://help.github.com/articles/github-glossary/#branch) instead of forking. If you create a copy of a repository that is offline, the process is called [`cloning`](https://help.github.com/articles/github-glossary/#clone). 
 
 `GitHub`'s ability to branch, fork and clone is very useful as it allows other people and yourself to experiment on (the code in) a repository before any definitive changes are [`merged`](https://help.github.com/articles/github-glossary/#merge) with the `master`. If you're working in a forked repository, you can submit a [`pull request`](https://help.github.com/articles/github-glossary/#pull-request) to the repository collaborators to accept (or reject) any suggested changes. 
 
-For now, this may be confusing, but I hope you recognize the benefits `GitHub` can have on the process of development and bug-fixing. For example, the most up-to-date version of the `mice` package in `R` can be directly installed from the `mice` repository with the following code:
+</details>
 
-```{r eval=FALSE}
-install.packages("devtools")
-devtools::install_github(repo = "stefvanbuuren/mice")
-```
+<details>
 
-You can see that this process requires package `devtools` that expands the `R` functionality with essential development tools. Loading packages in `R` directly from their respective `GitHub` repositories, allows you to obtain the latest - often improved and less buggy - iteration of that software even before it is published on [`CRAN`](https://cran.r-project.org). 
+  <summary>System requirements</summary>
+  **Installing on Mac**
+  
+  I suggest you install `Git` by downloading and installing [`GitHub   Desktop`](https://desktop.github.com). `GitHub`'s desktop application is a nice GUI and, naturally,   integrates well into the repository workflow on `GitHub`. 
+  
+  When installed, you can go to `GitHub Desktop > Install Command Line Tool`
+  
+  After a reboot, all should be set. 
+  
+  **Installing on Windows**
+  
+  Download and install [`Git for Windows`](https://gitforwindows.org), Then download and install [`GitHub   Desktop`](https://desktop.github.com). `GitHub`'s desktop application is a nice GUI and, naturally,   integrates well into the repository workflow on `GitHub`. 
+  
+  After a reboot, all should be set. 
+  
+  **Create a GitHub account**
+  
+  `GitHub` is the social and user interface to `Git` that allows you to work in   [repositories](https://help.github.com/articles/github-glossary/#repository). These repositories can be   seen as project folders in which you publish your work, but you can also use them as test sites for   development, testing, etcetera. There is a distinction between [private   repositories](https://help.github.com/articles/github-glossary/#private-repository) (only for you and   those you grant access) and public repositories (visible for everyone). 
+  
+  Your public repositories can be viewed and   [forked](https://help.github.com/articles/github-glossary/#fork) by everyone. `Forking` is when other   people create a copy of your repository on their own account. This allows them to work on a repository   without affecting the `master`. You can also do this yourself, but then the process is called   [`branching`](https://help.github.com/articles/github-glossary/#branch) instead of forking. If you   create a copy of a repository that is offline, the process is called   [`cloning`](https://help.github.com/articles/github-glossary/#clone). 
+  
+  `GitHub`'s ability to branch, fork and clone is very useful as it allows other people and yourself to   experiment on (the code in) a repository before any definitive changes are   [`merged`](https://help.github.com/articles/github-glossary/#merge) with the `master`. If you're   working in a forked repository, you can submit a [`pull   request`](https://help.github.com/articles/github-glossary/#pull-request) to the repository   collaborators to accept (or reject) any suggested changes. 
+  
+  For now, this may be confusing, but I hope you recognize the benefits `GitHub` can have on the process   of development and bug-fixing. For example, the most up-to-date version of the `mice` package in `R`   can be directly installed from the `mice` repository with the following code   `devtools::install_github(repo = "amices/mice")`.
+  
+  You can see that this process requires package `devtools` that expands the `R` functionality with   essential development tools. Loading packages in `R` directly from their respective `GitHub`   repositories, allows you to obtain the latest - often improved and less buggy - iteration of that   software even before it is published on [`CRAN`](https://cran.r-project.org). 
+  
+  **Opening an account**
+  
+  Go to [GitHub](https://github.com) and sign up. You may qualify for a free PRO subscription through   GitHub's [education benefits](https://education.github.com/benefits).
+  
+  **Install `RStudio`**
+  
+  Install `RStudio` from [Posit's website](https://posit.co/products/open-source/rstudio/). The free   edition will suffice. 
+</details>
 
-### Opening an account
-Go to [GitHub](https://github.com) and sign up. You may qualify for a free PRO subscription through GitHub's [education benefits](https://education.github.com/benefits).
-
-
-## Install `RStudio`
-Install `RStudio` from [Posit's website](https://posit.co/products/open-source/rstudio/). The free edition will suffice. 
-
-# Some R-code
+# Motivating example
 In order to demonstrate the creation of an R-package, we will identify some odd behaviour by `R`:
 ```{r}
 #| warning: false
