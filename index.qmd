@@ -2,7 +2,9 @@
 title: "How to quickly create an R-package"
 author: 
  - name: "Gerko Vink"
+   orcid: "0000-0001-9767-1924"
  - name: "Hanne Oberman"
+   orcid: "0000-0003-3276-2141"
 date: "12/03/2025"
 #bibliography: bibliography.bib
 #link-citations: true
@@ -13,14 +15,9 @@ format:
     # embed-resources: true
 ---
 
----
-
-[![DOI](https://zenodo.org/badge/601148138.svg)](https://zenodo.org/badge/latestdoi/601148138)<br>
-
-[Watch the recording here](https://www.dropbox.com/s/5lqwsn63v93f5dn/rpackage-00.00.17.848-00.56.25.896.mp4?dl=0)
-
-::: callout-warning
-Disclaimer: In the recording, there's an error, caused by removing the `GitHub` repo `roundR` that was created in the exercise materials and re-creating it with the exact same `roundR` name during the lecture. That is why `Zenodo` does not accept it a second time for a DOI. This makes sense, as you would not want to create a new DOI for content with the same name at the same location, nor use the same DOI for content with different time codes and temporal origin. For your repository, however, this would not be an issue. 
+::: callout-tip
+An earlier version of this workshop is available on Zenodo. [![DOI](https://zenodo.org/badge/601148138.svg)](https://zenodo.org/badge/latestdoi/601148138)<br>
+And a recording of this workshop is available [here](https://www.dropbox.com/s/5lqwsn63v93f5dn/rpackage-00.00.17.848-00.56.25.896.mp4?dl=0). Disclaimer: In the recording, there's an error, caused by removing the `GitHub` repo `roundR` that was created in the exercise materials and re-creating it with the exact same `roundR` name during the lecture. That is why `Zenodo` does not accept it a second time for a DOI. This makes sense, as you would not want to create a new DOI for content with the same name at the same location, nor use the same DOI for content with different time codes and temporal origin. For your repository, however, this would not be an issue. 
 :::
 ---
 
