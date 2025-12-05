@@ -529,7 +529,7 @@ It is good procedure to write an informative PR message, usually outlining the n
 ![](img/pullrequest.gif){width=90%}
 </center>
 
-When you go back to `GitHub desktop` and `fetch` the changes on teh remote (that would be GitHub online), you will see that you have now access to the `readme` file and the `development` branch. 
+When you go back to `GitHub desktop` and `fetch` the changes on the remote (that would be GitHub online), you will see that you have now access to the `readme` file and the `development` branch. 
 
 ### Registering a `DOI`
 Now that we have a proper and open source package online and the world as our user base, it would be wise to allow for proper referencing of our package.

@@ -1,4 +1,7 @@
 # R packages seminar
 
-See the accompanying website [gerkovink.com/rpackage](https://www.gerkovink.com/rpackage/) on how to create an R-package from scratch. By Gerko Vink and Hanne Oberman.
+Workshop "Develop an R package within an hour".
 
+See the accompanying website [hanneoberman.github.io/pkg-dev](https://hanneoberman.github.io/pkg-dev/) on how to create an R-package from scratch. 
+
+By Gerko Vink and Hanne Oberman.
