@@ -1,0 +1,29 @@
+project:
+  type: website
+  output-dir: docs
+  render:  
+    - "*.qmd"
+    # - "!lectures/"
+
+website:
+  title: ""
+  sidebar:
+    style: "floating"
+    logo: logo.png
+    contents:
+      - href: index.qmd
+        text: "Overview"
+      - href: 00_requirements.qmd
+        text: "Requirements"
+      - href: 01_basics.qmd
+        text: "Part 1: Basics"
+      - href: 02_sharing.qmd
+        text: "Part 2: Sharing"
+      - href: 03_take-aways.qmd
+        text: "Take aways"
+  body-footer: "--- <br><br> Copyright Hanne Oberman, 2025 - [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) <br> Materials developed by [Amices](https://amices.org) team - Methodology & Statistics - Utrecht University"
+
+format:
+  html:
+    theme: cosmo
+    toc: true

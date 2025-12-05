@@ -1,0 +1,122 @@
+---
+title: "Sharing R packages"
+subtitle: "Develop an R package within an hour"
+format: 
+  html:
+    embed-resources: true
+filters:
+  - toggle
+toggle:
+  output-toggle: true    # Enable toggle functionality
+  output-hidden: true   # Show outputs initially (default)
+  output-sync: true     # Individual control (default)
+---
+
+<!-- TODO: ## Create a package website -->
+
+### Uploading to GitHub
+
+::: {.callout-tip}
+This section assumes that you are logged into your GitHub account. If you have trouble realizing this, [GitHub has a great step-by-step walk through](https://docs.github.com/en/desktop/installing-and-configuring-github-desktop/installing-and-authenticating-to-github-desktop). 
+:::
+
+Let's publish our R package to GitHub. To do so, we need to perform two steps. First, we must log (commit) our changes to the `git` distributed version control system. This stores the file changes to our own machine. Next we must link our local `git` to a remote online repository on GitHub. Luckily, with 'GitHub Desktop', we can perform all these steps in a single window interface. 
+
+Let's start by adding our R package to GitHub Desktop. Remember that we already started the package in RStudio as a `git` repository, so we only have to point GitHub Desktop to the correct directory.
+<center>
+![](img/addgitrepo.gif){width=90%}
+</center>
+
+Next, we commit the changes. This means that we save the state of files for a moment in time, so that we can always revert to that state and see how the files changed with respect to the previous state. 
+<center>
+![](img/commit.gif){width=90%}
+</center>
+Naturally, you would not only do this at the start (when RStudio created the `git` repository) and end (when we have a working package), but at regular and informative intervals. For example, when you add a function, a test, a help file, a license, etcetera. 
+
+Now that we have commited our package, we can publish it on GitHub.
+<center>
+![](img/publish_gh.gif){width=90%}
+</center>
+
+Try your online GitHub repositories at [https://github.com](https://github.com). You will see your package there and that the license is automatically recognized. You will also see that you are in the `main` branch. By default, that will be the live version of your package. Now that your package is live, it would be nice to add a `README` file that informs visitors to your repository. But we will extend our workflow with a good behaviour: not working in the `main` branch. We would not want to accidentally overwrite or break the functionality of our package, just because we were working in the same branch. So let's add a `README` to a new `development` branch.
+<center>
+![](img/addREADME.gif){width=90%}
+</center>
+
+When we commit the new `README` file to the `development` branch, a new window opens to propose the `pull request` (PR). The PR is nothing more than a request to the package developers to pull your proposed changes into (usually) the `main` branch of the software. 
+Since we are the developers, we have to both create and accept the PR. 
+<center>
+![](img/openpr.gif){width=90%}
+</center>
+
+It is good procedure to write an informative PR message, usually outlining the nature and rationale of the changes. I also demonstrate how to accept a PR, thereby approving the changes per file (only one now) and signing it with my initials. I cannot formally *approve* my own PR, since that would leave great opportunity for subjectivity or error. Proper procedure would be to have someone else check and approve your changes. 
+
+<center>
+![](img/pullrequest.gif){width=90%}
+</center>
+
+When you go back to GitHub Desktop and `fetch` the changes on teh remote (that would be GitHub online), you will see that you have now access to the `README` file and the `development` branch. 
+
+### Registering a `DOI`
+Now that we have a proper and open source package online and the world as our user base, it would be wise to allow for proper referencing of our package.
+
+GitHub and `Zenodo` have paired to facilitate this procedure. If you link your `Zenodo` account to GitHub, [as outlined here](https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content), you only have to click, copy and paste to fully make your GitHub repo citeable. 
+
+<center>
+![](img/doi.gif){width=90%}
+</center>
+
+### Add citation
+`Zenodo` prepares the repository citation for us. We can simply grab the info, change our personal information and submit it to GitHub. 
+
+<center>
+![](img/citation.gif){width=90%}
+</center>
+
+The final step before we would put our package *out there* is to notify how users can refer to our package. Run the following code:
+```{r eval = FALSE}
+usethis::use_citation()
+```
+which will create the necessary citation files for modification
+```{r eval = FALSE}
+✔ Creating 'inst/'
+✔ Writing 'inst/CITATION'
+• Modify 'inst/CITATION'
+```
+
+We can now simply grab the text and/or `bibtex` citation from GitHub and paste it into the `CITATION` file. The citation info cf. R packages could be:
+```{r eval=FALSE}
+citHeader("To cite roundR in publications use:")
+
+citEntry(
+  entry    = "Manual",
+  title    = "hanneoberman/roundR: Version 0.1.0 - First release",
+  author   = "Gerko Vink and Hanne Oberman",
+  year     = "2025",
+  doi      = "10.5281/zenodo.7668889",
+  url      = "github.com/gerkovink/roundR",
+  textVersion = paste(
+"Vink, G and Oberman, H.I. (2025). gerkovink/roundR: Version 0.1.0 - First release (Version v0.2.0) [Computer software]. https://doi.org/10.5281/zenodo.7668889"
+  )
+)
+```
+
+Modify this to your name and paste it into the `CITATION` file.
+
+<center>
+![](img/use_citation.gif){width=90%}
+</center>
+
+### Installing your own package from GitHub
+Go to GitHub Desktop, and commit and push the changes to GitHub. Then run the following code block:
+```{r}
+#| eval: false
+
+devtools::install_github("hanneoberman/roundR")
+```
+where you replace `"hanneoberman/roundR"` with your GitHub handle and repository name. 
+
+<center>
+![](img/install_github.gif){width=90%}
+</center>
+

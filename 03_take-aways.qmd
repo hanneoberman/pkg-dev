@@ -1,0 +1,37 @@
+---
+title: "Take aways"
+subtitle: "Develop an R package within an hour"
+format: 
+  html:
+    embed-resources: true
+filters:
+  - toggle
+toggle:
+  output-toggle: true    # Enable toggle functionality
+  output-hidden: true   # Show outputs initially (default)
+  output-sync: true     # Individual control (default)
+---
+
+Now you know how to build and share an R package.
+
+::: columns
+::: {.column width="30%"}
+![](img/hex.png){width=90%}
+:::
+
+::: {.column width="70%"}
+
+Potential next steps include:
+
+- Creating package documentation (e.g. vignettes)
+- Creating a hex logo (e.g. with [`hexmake`](https://connect.thinkr.fr/hexmake/))
+- Creating a package website (e.g. with [`pkgdown`](https://pkgdown.r-lib.org/))
+- Checking the FAIR-ness of your package (e.g. with [`howfairis`](https://pypi.org/project/howfairis/), or [BadgeApp](https://bestpractices.coreinfrastructure.org/en))
+- Checking the code coverage of your package (e.g. with [Codecov](https://about.codecov.io/))
+- Maintaining the package (e.g. with [GitHub issues](https://docs.github.com/en/issues/tracking-your-work-with-issues))
+- Maintaining contributions (e.g. with [a code of conduct](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-code-of-conduct-to-your-project))
+
+:::
+:::
+
+This workshop relies heavily on [the `R Packages` book by Hadley Wickham and Jenny Bryan](https://r-pkgs.org)
