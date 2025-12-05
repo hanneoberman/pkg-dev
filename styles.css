@@ -1,0 +1,43 @@
+.title {
+  font-size: 50px !important;
+}
+
+.quarto-title-block .quarto-title-banner {
+  background-image: url(avatar.png);
+  background-size: 100px;
+  background-repeat: no-repeat;
+  padding-left: 30px !important;
+  padding-top: 30px;
+  background-origin: content-box;
+}
+
+/* Style all icons */
+.fa {
+  padding: 20px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+}
+.fa:hover {
+  opacity: 0.7;
+}
+.fa-brands {
+  padding: 20px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+}
+.fa-brands:hover {
+  opacity: 0.7;
+}
+.ai {
+  padding: 20px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+}
+.ai:hover {
+  opacity: 0.7;
+}
+
+b,strong {font-weight: bold}
