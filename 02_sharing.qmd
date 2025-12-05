@@ -139,9 +139,11 @@ Now that we have commited our package, we can publish it on GitHub.
 
 Find your online GitHub repositories at [https://github.com](https://github.com). You will see your package there, and that the license and README are automatically recognized. 
 
+![](img/github.png)
+
 Now, we can edit the `README` file to add how others can install the package. We can do this locally (in RStudio on your PC), or edit the file on GitHub.
 
-### Edit the `README` file 
+### Edit the `README` file
 
 Now that our package is online, if we want to make changes to the package, we should avoid introducing bugs on the live version. The live version of the package is in the `main` branch, which we should protect against breaking changes. 
 
@@ -152,8 +154,6 @@ Create a new branch named `development`. Navigate to the `README.Rmd` file and r
 devtools::install_github("hanneoberman/roundR")
 ```
 
-<!-- Commit the changes to the `development` branch.   -->
-<!-- ### Add a README file -->
 
 <!-- Click the `Add a README` button on the GitHub repository. Commit the changes to a new branch called `development`.  -->
 
@@ -161,7 +161,7 @@ devtools::install_github("hanneoberman/roundR")
 <!-- ![](img/addREADME.gif){width=90%} -->
 <!-- </center> -->
 
-When we commit the changes in the `README` file to the `development` branch, a new window opens to propose the `pull request` (PR). The PR is nothing more than a request to the package developers to pull your proposed changes into (usually) the `main` branch of the software.
+When we commit the changes in the `README` file to the `development` branch online on GitHub, a new window opens to propose the `pull request` (PR). The PR is nothing more than a request to the package developers to pull your proposed changes into (usually) the `main` branch of the software.
 Since we are the developers, we have to both create and accept the PR.
 <center>
 ![](img/openpr.gif){width=90%}
