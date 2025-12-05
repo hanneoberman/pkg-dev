@@ -6,7 +6,9 @@ format:
     embed-resources: true
 ---
 
-It is much easier to create, manage and co-develop an `R` package when you incorporate it into a distributed version control system like [git](https://git-scm.com). The extension to a software development hosting service like [GitHub](https://github.com) is then a natural one. Although there are other procedures and [DevOps](https://en.wiktionary.org/wiki/DevOps#Noun) systems and hosting services that may lend itself for package development, we outline the workflow with `git` and `GitHub`. We also assume that you have [`RStudio`](https://posit.co/products/open-source/rstudio/) available (installed or online). 
+It is much easier to create, manage and co-develop an `R` package when you incorporate it into a distributed version control system like [git](https://git-scm.com). The extension to a software development hosting service like [GitHub](https://github.com) is then a natural one. Although there are other procedures and [DevOps](https://en.wiktionary.org/wiki/DevOps#Noun) systems and hosting services that may lend itself for package development, we outline the workflow with `git` and `GitHub`. 
+
+That said, you can follow [the first part of tutorial](01_basics.qmd) without the use of `git` or GitHub. We will assume that you have [`RStudio`](https://posit.co/products/open-source/rstudio/) available (installed or online). 
 
 ## Assumed prior knowledge
 
