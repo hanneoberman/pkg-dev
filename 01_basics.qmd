@@ -260,7 +260,7 @@ Filling in the roxygen skeleton--with some customization and examples--could res
 #'
 #' @param x A numeric element or vector to round to the nearest integer
 #' @returns An integer element or vector
-
+#' 
 #' @author Gerko Vink \email{g.vink@uu.nl} and Hanne Oberman
 #' \email{h.i.oberman@uu.nl}
 #'
