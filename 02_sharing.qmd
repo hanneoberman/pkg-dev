@@ -277,17 +277,25 @@ If you want to, you can review the changes in the 'Files changed' tab of the PR.
 If you are happy with the proposed changes, click 'Merge pull request' and then 'Confirm merge'.
 ![](img/merge.png)
 ![](img/confirm.png)
+Online, we've now updated the README file in the 'live' version of our package. But locally (on your own PC), these changes are not yet present.
 
-<center>
-![](img/pullrequest.gif){width=90%}
-</center>
+When you go back to GitHub Desktop or the 'Git' tab in RStudio, we can '`fetch`' the changes from the 'remote' (i.e., check if there are any updates on GitHub online), and '`pull`' the changes that have been made (i.e., importing the version with the recent changes from online). 
 
-When you go back to GitHub Desktop and `fetch` the changes on the 'remote' (that would be GitHub online), you will see that you have now access to the updated `README` file and the `development` branch.
+In GitHub desktop, you can explicitly fetch the changes first, before pulling to update the local version.
 
-<!-- TODO: open locally to re-render website/use GH Pages website? -->
-Now, we can make sure that the online edits are presented in our updated package:
+![](img/gh-fetch.png)
+You will see that you now have access to the newly added `development` branch.
 
-First render the `README.Rmd` file to plain markdown.
+![](img/gh-pull.png)
+
+Now, the changes can be pulled. This can be done in GitHub Desktop, by clicking 'Pull origin', or in RStudio by clicking 'Pull'. 
+
+In RStudio, fetching and pulling are one step. Go to the 'Git' tab and click the blue arrow with 'Pull'.
+
+![](img/rstudio-git.png)
+You now have updated the `README.Rmd` file to match the version online. 
+
+Next, we should update `README.md`. Re-render the `README.Rmd` file to get an updated plain markdown version.
 ```{r, eval=FALSE}
 devtools::build_readme()
 ```
@@ -308,51 +316,71 @@ devtools::document()
 ℹ Loading roundR
 Writing roundR-package.Rd
 ```
-This added the package website to the package help file.
+This added the package GitHub repository to the package help file.
 
-And finally re-render the package website.
-```{r, eval=FALSE}
-pkgdown::build_site()
-```
-This updated website should be committed and pushed to be visible online. Then, at the online GitHub repo, we should turn on 'GitHub Pages' to make the package website available to others online. 
+Commit the changes via RStudio or GitHub Desktop.
 
-::: {.callout-tip collapse="true"}
-# Automating website updates with GitHub Actions
-Another option would have been to directly use the function `usethis::usethis::use_pkgdown_github_pages()` to launch the website from your local RStudio.
+In RStudio, this is done by clicking 'Commit'.
+![](img/rstudio-commit.png)
+In GitHub Desktop, committing is only possible **after** adding a commit message.
 
-Set-up a GitHub pages branch to launch the package website from.
-```{r, eval=FALSE}
-usethis::use_github_pages()
-```
+![](img/gh-changes.png)
 
-```
-✔ Setting active project to "your-directory/roundR".
-✔ Initializing empty, orphan branch "gh-pages" in GitHub repo "hanneoberman/roundR".
-✔ GitHub Pages is publishing from:
-• URL: "https://hanneoberman.github.io/roundR/"
-• Branch: "gh-pages"
-• Path: "/"
-```
+![](img/gh-commit.png)
 
-Commit the changes. Push the changes. Check GitHub repo: banner with recent changes on dev branch, added branch number 3, 'deployments' added github-pages (https://github.com/hanneoberman/roundR/deployments/github-pages). Click branch `development`. See it's empty. Why?
-:::
+Push the changes to make them available online.
+![](img/gh-push.png)
+Since we have been working in the `development` branch, the changes should again be merged using a pull request.
 
-The website is not uploaded with the package, because it's ignored by `git`.
+![](img/gh-pr.png)
 
-In the file `.gitignore`, the package documentation is blocked from uploading to GitHub. **Remove** the `docs` folder from the list of files/directories that are not tracked with `git`.
+Online, follow the same steps as before to create and merge a pull request.
+![](img/gh-online.png)
 
-```
-.Rproj.user
-.Rhistory
-.RData
-.httr-oauth
-.DS_Store
-.quarto
-```
+<!-- With the edited documents, we should also re-render the package website. This can be done with the function `usethis::usethis::use_pkgdown_github_pages()`. -->
 
-Save the `.gitignore` file and push the changes to GitHub.
+<!-- pkgdown::build_site() -->
 
-Now, the package website will be uploaded to the GitHub repository and launched online via GitHub Pages. To evaluate this process, see the 'GitHub Actions' tab on GitHub, or directly check whether the website is live via the package website URL.
+<!-- This updated website should be committed and pushed to be visible online. Then, at the online GitHub repo, we should turn on 'GitHub Pages' to make the package website available to others online.  -->
+
+<!-- ::: {.callout-tip collapse="true"} -->
+<!-- # Automating website updates with GitHub Actions -->
+<!-- Another option would have been to directly use the function `usethis::usethis::use_pkgdown_github_pages()` to launch the website from your local RStudio. -->
+<!-- ::: -->
+
+<!-- Set-up a GitHub pages branch to launch the package website from. -->
+<!-- ```{r, eval=FALSE} -->
+<!-- usethis::use_github_pages() -->
+<!-- ``` -->
+
+<!-- ``` -->
+<!-- ✔ Setting active project to "your-directory/roundR". -->
+<!-- ✔ Initializing empty, orphan branch "gh-pages" in GitHub repo "hanneoberman/roundR". -->
+<!-- ✔ GitHub Pages is publishing from: -->
+<!-- • URL: "https://hanneoberman.github.io/roundR/" -->
+<!-- • Branch: "gh-pages" -->
+<!-- • Path: "/" -->
+<!-- ``` -->
+
+<!-- Commit the changes. Push the changes. Check GitHub repo: banner with recent changes on dev branch, added branch number 3, 'deployments' added github-pages (https://github.com/hanneoberman/roundR/deployments/github-pages). Click branch `development`. See it's empty. Why? -->
+
+
+<!-- The website is not uploaded with the package, because it's ignored by `git`. -->
+
+<!-- In the file `.gitignore`, the package documentation is blocked from uploading to GitHub. **Remove** the `docs` folder from the list of files/directories that are not tracked with `git`. -->
+
+<!-- ``` -->
+<!-- .Rproj.user -->
+<!-- .Rhistory -->
+<!-- .RData -->
+<!-- .httr-oauth -->
+<!-- .DS_Store -->
+<!-- .quarto -->
+<!-- ``` -->
+
+<!-- Save the `.gitignore` file and push the changes to GitHub. -->
+
+<!-- Now, the package website will be uploaded to the GitHub repository and launched online via GitHub Pages. To evaluate this process, see the 'GitHub Actions' tab on GitHub, or directly check whether the website is live via the package website URL. -->
 
 <!-- TODO: Add automated checking with continuous integration -->
 <!-- use_github_action() -->
