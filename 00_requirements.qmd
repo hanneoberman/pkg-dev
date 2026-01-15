@@ -94,7 +94,9 @@ install.packages(c("devtools", "dplyr", "roxygen2", "usethis", "testthat"))
 
 **3. Go to [https://docs.posit.co/cloud/get_started/](https://docs.posit.co/cloud/get_started/) and follow the instructions up to and including "Create a Project".**
 
-**4. In the 'Build' tab, cleck 'configure build tools'.**
+**4. In the 'Build' tab, click 'Configure build tools' and make sure 'Project build tools' is set to "Package".**
+
+![](img/positcloud-buildtools.png)
 
 **5. Install the necessary R packages**
 ```{r}
