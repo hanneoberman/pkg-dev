@@ -82,7 +82,7 @@ install.packages(c("devtools", "dplyr", "roxygen2", "usethis", "testthat"))
 
 ::: {.callout-note icon=false collapse="true"}
 
-## `R` and RStudio online
+## `R` and RStudio online via Posit Cloud
 
 **1. Go to [https://posit.cloud/](https://posit.cloud/) and click on "Sign Up" in the top-right corner.**
 
@@ -92,12 +92,28 @@ install.packages(c("devtools", "dplyr", "roxygen2", "usethis", "testthat"))
 
 ![](img/positcloud-plan.png){width="70%"}
 
-**3. Go to [https://docs.posit.co/cloud/get_started/](https://docs.posit.co/cloud/get_started/) and follow the instructions up to and including "Create a Project"**
+**3. Go to [https://docs.posit.co/cloud/get_started/](https://docs.posit.co/cloud/get_started/) and follow the instructions up to and including "Create a Project".**
 
-**4. Install the necessary R packages**
+**4. In the 'Build' tab, cleck 'configure build tools'.**
+
+**5. Install the necessary R packages**
 ```{r}
 #| eval: false
-install.packages(c("devtools", "dplyr"))
+install.packages(c(
+  "devtools",
+  "dplyr",
+  "roxygen2",
+  "testthat",
+  "knitr",
+  "usethis",
+  "here"
+))
+```
+
+**6. Set the working directory to the project root.**
+```{r}
+#| eval: false
+setwd(here::here())
 ```
 :::
 
