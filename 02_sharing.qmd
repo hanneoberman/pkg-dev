@@ -285,13 +285,84 @@ If you are happy with the proposed changes, click 'Merge pull request' and then 
 When you go back to GitHub Desktop and `fetch` the changes on the 'remote' (that would be GitHub online), you will see that you have now access to the updated `README` file and the `development` branch.
 
 <!-- TODO: open locally to re-render website/use GH Pages website? -->
+Now, we can make sure that the online edits are presented in our updated package:
 
-Now, we can re-render the package website with the updated information about the installation:
+First render the `README.Rmd` file to plain markdown.
+```{r, eval=FALSE}
+devtools::build_readme()
+```
+
+```
+ℹ Installing roundR in temporary library
+ℹ Building /Users/4216318/Desktop/roundR/README.Rmd
+```
+This step updates the document `README.md`.
+
+Then, update the package documentation.
+```{r, eval=FALSE}
+devtools::document()
+```
+
+```
+ℹ Updating roundR documentation
+ℹ Loading roundR
+Writing roundR-package.Rd
+```
+This added the package website to the package help file.
+
+And finally re-render the package website.
 ```{r, eval=FALSE}
 pkgdown::build_site()
 ```
-This updated website should be committed and pushed to be visible online. Then, at the online GitHub repo, we should turn on 'GitHub Pages' to make the package website available to others online. Another option would be to use the function `usethis::usethis::use_pkgdown_github_pages()` to launch the website from your local RStudio.
+This updated website should be committed and pushed to be visible online. Then, at the online GitHub repo, we should turn on 'GitHub Pages' to make the package website available to others online. 
 
+::: {.callout-tip collapse="true"}
+# Automating website updates with GitHub Actions
+Another option would have been to directly use the function `usethis::usethis::use_pkgdown_github_pages()` to launch the website from your local RStudio.
+
+Set-up a GitHub pages branch to launch the package website from.
+```{r, eval=FALSE}
+usethis::use_github_pages()
+```
+
+```
+✔ Setting active project to "your-directory/roundR".
+✔ Initializing empty, orphan branch "gh-pages" in GitHub repo "hanneoberman/roundR".
+✔ GitHub Pages is publishing from:
+• URL: "https://hanneoberman.github.io/roundR/"
+• Branch: "gh-pages"
+• Path: "/"
+```
+
+Commit the changes. Push the changes. Check GitHub repo: banner with recent changes on dev branch, added branch number 3, 'deployments' added github-pages (https://github.com/hanneoberman/roundR/deployments/github-pages). Click branch `development`. See it's empty. Why?
+:::
+
+The website is not uploaded with the package, because it's ignored by `git`.
+
+In the file `.gitignore`, the package documentation is blocked from uploading to GitHub. **Remove** the `docs` folder from the list of files/directories that are not tracked with `git`.
+
+```
+.Rproj.user
+.Rhistory
+.RData
+.httr-oauth
+.DS_Store
+.quarto
+```
+
+Save the `.gitignore` file and push the changes to GitHub.
+
+Now, the package website will be uploaded to the GitHub repository and launched online via GitHub Pages. To evaluate this process, see the 'GitHub Actions' tab on GitHub, or directly check whether the website is live via the package website URL.
+
+<!-- TODO: Add automated checking with continuous integration -->
+<!-- use_github_action() -->
+<!-- Which action do you want to add? (0 to exit) -->
+<!-- (See <https://github.com/r-lib/actions/tree/v2/examples> for other options)  -->
+
+<!-- 1: check-standard: Run `R CMD check` on Linux, macOS, and Windows -->
+<!-- 2: test-coverage: Compute test coverage and report to https://about.codecov.io -->
+
+<!-- Selection:  -->
 ### Registering a `DOI`
 Now that we have a proper and open source package online and the world as our user base, it would be wise to allow for proper referencing of our package.
 
