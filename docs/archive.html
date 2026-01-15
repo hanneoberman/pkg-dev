@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,14 +70,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -133,7 +134,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="./logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -300,8 +302,8 @@ System requirements
 <h1 data-number="2"><span class="header-section-number">2</span> Motivating example</h1>
 <p>In order to demonstrate the creation of an R-package, we will identify some odd behavior by <code>R</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">1.5</span>, <span class="fl">2.5</span>, <span class="fl">3.5</span>) <span class="sc">%&gt;%</span> <span class="fu">round</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">1.5</span>, <span class="fl">2.5</span>, <span class="fl">3.5</span>) <span class="sc">%&gt;%</span> <span class="fu">round</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0 2 2 4</code></pre>
 </div>
@@ -309,7 +311,7 @@ System requirements
 <p>We can see that <code>R</code> rounds - by default - the number <code>1.5</code> to integer <code>2</code> and the number <code>2.5</code> also to integer <code>2</code>. The reason for this behavior is the IEC 60559 standard where a 5 is expected to be rounded to the even digit.</p>
 <p>If we’d like to round up to the next integer, we can easily define the following function:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rounder <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rounder <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  diff <span class="ot">&lt;-</span> x <span class="sc">-</span> <span class="fu">floor</span>(x)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> x <span class="sc">%&gt;%</span> <span class="fu">ceiling</span>()</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  out[diff <span class="sc">&lt;</span> .<span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="fu">floor</span>(x)[diff <span class="sc">&lt;</span> .<span class="dv">5</span>]</span>
@@ -319,18 +321,18 @@ System requirements
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># rounder &lt;- function(x){</span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#   diff &lt;- x - floor(x)</span></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#   ifelse(dplyr::between(diff, 0, 0.5), floor(x), ceiling(x))</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># }</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># }</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>where the vector <code>c(0.5, 1.5, 2.5, 3.5)</code> is rounded up to the <em>next</em> integer</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">1.5</span>, <span class="fl">2.5</span>, <span class="fl">3.5</span>) <span class="sc">%&gt;%</span> <span class="fu">rounder</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">1.5</span>, <span class="fl">2.5</span>, <span class="fl">3.5</span>) <span class="sc">%&gt;%</span> <span class="fu">rounder</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1 2 3 4</code></pre>
 </div>
 </div>
 <p>and where the vector <code>c(0.49, 1.49, 2.49, 3.49)</code> is rounded down to the <em>previous</em> integer</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fl">0.49</span>, <span class="fl">1.49</span>, <span class="fl">2.49</span>, <span class="fl">3.49</span>) <span class="sc">%&gt;%</span> <span class="fu">rounder</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fl">0.49</span>, <span class="fl">1.49</span>, <span class="fl">2.49</span>, <span class="fl">3.49</span>) <span class="sc">%&gt;%</span> <span class="fu">rounder</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0 1 2 3</code></pre>
 </div>
@@ -345,9 +347,9 @@ System requirements
 <h3 data-number="3.1.1" class="anchored" data-anchor-id="packages-and-sources-needed"><span class="header-section-number">3.1.1</span> Packages and sources needed</h3>
 <p>We need the following packages to help us with building, testing and maintaining our package:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools) <span class="co"># development tools</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools) <span class="co"># development tools</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(usethis)  <span class="co"># automated package and project setup</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(testthat) <span class="co"># unit testing</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(testthat) <span class="co"># unit testing</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="preparing-the-package-structure" class="level3" data-number="3.1.2">
@@ -378,7 +380,7 @@ System requirements
 <p><br></p>
 <p>Now, replace the contents of the <code>DESCRIPTION</code> file with</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Package<span class="sc">:</span> roundR</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Package<span class="sc">:</span> roundR</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Type<span class="sc">:</span> Package</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>Title<span class="sc">:</span> Round Numeric Values to the Nearest Integer</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>Version<span class="sc">:</span> <span class="dv">0</span>.<span class="fl">1.0</span></span>
@@ -387,12 +389,12 @@ System requirements
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>Description<span class="sc">:</span> In R the default choice <span class="cf">for</span> rounding follows the IEC <span class="dv">60559</span> standard where a <span class="dv">5</span> is expected to be rounded to the even digit. This package offers alternative functionality to round to the closest integer. </span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>License<span class="sc">:</span> No LiCeNsE YeT</span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>Encoding<span class="sc">:</span> UTF<span class="dv">-8</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>LazyData<span class="sc">:</span> true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>LazyData<span class="sc">:</span> true</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The <code>DESCRIPTION</code> file governs the information about the licence, authors, contributors, maintainers, etcetera. The argument <code>lazyData: true</code> indicates that data sets should be lazily loaded. This means that data will not occupy any memory unless it is needed. This is a good argument to have as default.</p>
 <p>We also need to set a license. Running the following code from package <code>usethis</code> will write a permissive MIT license to the description file</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_mit_license</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_mit_license</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Don’t forget to save the updated DESCRIPTION file and change our names to your name.</p>
 </section>
@@ -400,7 +402,7 @@ System requirements
 <h3 data-number="3.1.4" class="anchored" data-anchor-id="add-the-functional-code"><span class="header-section-number">3.1.4</span> Add the functional code</h3>
 <p>Now it is time to extend the package with the functionality we promised in our updated <code>DESCRIPTION</code>. To do so, we start a new file names <code>rounder.R</code> by either manually creating it in the <code>R</code> sub folder, or by running the following code evaluation</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_r</span>(<span class="st">"rounder"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_r</span>(<span class="st">"rounder"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The <code>use_r()</code> function from the <code>usethis</code> package is very convenient, because it creates the necessary file in the correct location and opens the file in the editor pane.</p>
 <center>
@@ -410,27 +412,27 @@ System requirements
 <p>Now that we have created the file for our functional code, we can start building the code file. The most flexible approach to creating and maintaining a package is to use <code>roxygen2</code>. The <code>roxygen2</code> package is a convenient in-line documentation convention that generates your <code>Rd</code> documentation, <code>NAMESPACE</code> file, and much more for you. Remember that <code>man</code> folder in our package root? That contains all documentation files. However, you can imagine if we have two separate locations for our <code>R</code>-code and our <code>Rd</code> help files, that at some point the code and documentation might get out of sync. For example, if we update the code, but forget to reflect changes in our manual, the usability of our package may be at stake and documentation to end-users might get confusing. Most of all, it would be a lot of work for us to maintain multiple linked files in multiple locations. <code>roxygen2</code> solves this for us by extracting the documentation from our <code>R</code>-code file. The only thing we need to do is maintain a single file.</p>
 <p>To start with <code>roxygen2</code> in our package, we need to instruct the package to use <code>roxygen2</code> from now on:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_roxygen_md</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_roxygen_md</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The above call will add the following lines to our <code>DESCRIPTION</code> file:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Roxygen<span class="sc">:</span> <span class="fu">list</span>(<span class="at">markdown =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>RoxygenNote<span class="sc">:</span> <span class="dv">7</span>.<span class="fl">2.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Roxygen<span class="sc">:</span> <span class="fu">list</span>(<span class="at">markdown =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>RoxygenNote<span class="sc">:</span> <span class="dv">7</span>.<span class="fl">2.3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We mentioned before that the <code>roxygen2</code> engine expects the function documentation in the same file as the function code. A good starting point for that documentation is the following block:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' A short description of your function</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' A short description of your function</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param x The first argument to be governed by the letter x.</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param y The second argument to denoted by the letter y.</span></span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' @returns a short description of the expected return.</span></span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples</span></span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">#' examplecode 1</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' examplecode 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' examplecode 2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In <code>R</code>, when you have executed <code>usethis::use_r()</code> and have filled in your <code>R</code> code, you can run <code>Code &gt; Insert Roxygen Skeleton</code> to automatically create the relevant roxygen documentation. For our function <code>rounder()</code> - with some customization and examples, this could result in the following <code>rounder.R</code> code file</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Round to the nearest integer</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Round to the nearest integer</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#'Function \code{\link{base::round}} rounds - by default -  the number `1.5` to</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#'integer `2` and the number `2.5` also to integer `2`. The reason for this</span></span>
@@ -452,12 +454,12 @@ System requirements
 <span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> x <span class="sc">%&gt;%</span> <span class="fu">ceiling</span>()</span>
 <span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>  out[diff <span class="sc">&lt;</span> .<span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="fu">floor</span>(x)[diff <span class="sc">&lt;</span> .<span class="dv">5</span>]</span>
 <span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(out)</span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>You can copy the above code chunk to your <code>rounder.R</code> file. A good source to find inspiration for writing <code>roxygen2</code> documentation is <a href="https://roxygen2.r-lib.org/articles/roxygen2.html">the <code>roxygen2</code> reference page</a>.</p>
 <p>Now that we have a working <code>rounder.R</code> file with documentation included, we can build the documentation. A good wrapper function to build all documentation in your package is the following code evaluation:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">document</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">document</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <center>
 <img src="img/devtools.gif" class="img-fluid" style="width:90.0%">
@@ -465,8 +467,8 @@ System requirements
 <p><br></p>
 <p>The <code>document()</code> function from the <code>devtools</code> package will build all documentation for all files that use <code>roxygen2</code> and it will build the <code>NAMESPACE</code> of your package accordingly. If you encounter the following message:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Skipping NAMESPACE</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>✖ It already exists and was not generated by roxygen2. </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Skipping NAMESPACE</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>✖ It already exists and was not generated by roxygen2. </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>just remove the <code>NAMESPACE</code> file and re-run the <code>document()</code> function.</p>
 <p>We can now remove the <code>R/hello.R</code> and <code>man/hello.Rd</code> files as they are not supposed to be part of our package</p>
@@ -482,7 +484,7 @@ System requirements
 <section id="error" class="level4" data-number="3.1.5.1">
 <h4 data-number="3.1.5.1" class="anchored" data-anchor-id="error"><span class="header-section-number">3.1.5.1</span> Error</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>❯ checking examples ... ERROR</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>❯ checking examples ... ERROR</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  Running examples <span class="cf">in</span> ‘roundR<span class="sc">-</span>Ex.R’ failed</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  The error most likely occurred <span class="cf">in</span><span class="sc">:</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -491,64 +493,64 @@ System requirements
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&gt;</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">1.5</span>, <span class="fl">2.5</span>, <span class="fl">3.5</span>) <span class="sc">%&gt;%</span> <span class="fu">round</span>()</span>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  Error <span class="cf">in</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">1.5</span>, <span class="fl">2.5</span>, <span class="fl">3.5</span>) <span class="sc">%&gt;%</span> <span class="fu">round</span>() <span class="sc">:</span> </span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    could not find <span class="cf">function</span> <span class="st">"%&gt;%"</span></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  Execution halted</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  Execution halted</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The error stems from the examples in our documentation. The examples use the binary function <code>%&gt;%</code> from package <code>magrittr</code>, but we did not load that package in the example. Remember that these examples are self-contained and that any dependent packages need to be explicitly loaded via <code>library()</code> for the code to run. Just like any other <code>R</code> instance. Simply adding <code>library(magrittr)</code> to the example code will solve the issue.</p>
 <p>Add <code>library(magrittr)</code> to the example code:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#' library(magrittr)</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' # rounds weirdly</span></span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' c(0.5, 1.5, 2.5, 3.5) %&gt;% round()</span></span>
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' # rounds correctly</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' c(0.5, 1.5, 2.5, 3.5) %&gt;% rounder()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' c(0.5, 1.5, 2.5, 3.5) %&gt;% rounder()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="warning" class="level4" data-number="3.1.5.2">
 <h4 data-number="3.1.5.2" class="anchored" data-anchor-id="warning"><span class="header-section-number">3.1.5.2</span> Warning</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>❯ checking Rd cross<span class="sc">-</span>references ... WARNING</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>❯ checking Rd cross<span class="sc">-</span>references ... WARNING</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  Missing link or links <span class="cf">in</span> documentation object <span class="st">'rounder.Rd'</span><span class="sc">:</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    ‘base<span class="sc">::</span>round’</span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  See section <span class="st">'Cross-references'</span> <span class="cf">in</span> the <span class="st">'Writing R Extensions'</span> manual.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  See section <span class="st">'Cross-references'</span> <span class="cf">in</span> the <span class="st">'Writing R Extensions'</span> manual.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The error stems from the crossreference we attempted in our documentation. The proper way to refer to function <code>round()</code> from package <code>base</code> is not with <code>\link{base::round}</code>, but with <code>\link[base]{round}</code> following the structure <code>\link[package]{function}</code>. We could have opted for not referencing, or linking the <code>round()</code> function at all, but this would not align with open and inclusive development conventions.</p>
 <p>Correct the faulty crossreferences in the documentation:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#'Function \code{\link[base]{round}} rounds - by default -  the number `1.5` to</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#'Function \code{\link[base]{round}} rounds - by default -  the number `1.5` to</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#'integer `2` and the number `2.5` also to integer `2`. The reason for this</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">#'behaviour is the IEC 60559 standard where a 5 is expected to be rounded to the</span></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">#'even digit. This function provides an integer rounding alternative to</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co">#'\code{\link[base]{round}}.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co">#'\code{\link[base]{round}}.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="note" class="level4" data-number="3.1.5.3">
 <h4 data-number="3.1.5.3" class="anchored" data-anchor-id="note"><span class="header-section-number">3.1.5.3</span> Note</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>❯ checking R code <span class="cf">for</span> possible problems ... NOTE</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>❯ checking R code <span class="cf">for</span> possible problems ... NOTE</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  rounder<span class="sc">:</span> no visible global <span class="cf">function</span> definition <span class="cf">for</span> ‘<span class="sc">%&gt;%</span>’</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  Undefined global functions or variables<span class="sc">:</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="sc">%&gt;%</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="sc">%&gt;%</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We use function <code>%&gt;%</code> from package <code>magrittr</code>, but we neglected to make explicit that this function should have been imported from package <code>magrittr</code>. In other words, <code>R</code> needs to know that our package <code>roundR</code> would depend on package <code>magrittr</code> for its functionality to work.</p>
 <p>We can fix this by running the following <code>usethis</code> evaluation in the console:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_import_from</span>(<span class="st">"magrittr"</span>, <span class="st">"%&gt;%"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_import_from</span>(<span class="st">"magrittr"</span>, <span class="st">"%&gt;%"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>When asked</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">use_import_from()</span><span class="st">`</span> requires package<span class="sc">-</span>level documentation.</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">use_import_from()</span><span class="st">`</span> requires package<span class="sc">-</span>level documentation.</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>Would you like to add it now?</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> For sure</span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">:</span> Not now</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="sc">:</span> No way</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="sc">:</span> No way</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>choose the fun option that would add it (i.e.&nbsp;<code>For Sure</code>, <code>Yes</code>, <code>Absolutely</code>, etc). These options change every time you re-run the function code, so read it carefully!</p>
 <p>Once you have selected the correct option, we can re-run the <code>CHECK</code>. You will find that there still persists an error in the example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>❯ checking examples ... ERROR</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>❯ checking examples ... ERROR</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  Running examples <span class="cf">in</span> ‘roundR<span class="sc">-</span>Ex.R’ failed</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  The error most likely occurred <span class="cf">in</span><span class="sc">:</span></span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  </span>
@@ -557,25 +559,25 @@ System requirements
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&gt;</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">1.5</span>, <span class="fl">2.5</span>, <span class="fl">3.5</span>) <span class="sc">%&gt;%</span> <span class="fu">rounder</span>()</span>
 <span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  Error <span class="cf">in</span> <span class="fu">rounder</span>(.) <span class="sc">:</span> could not find <span class="cf">function</span> <span class="st">"rounder"</span></span>
 <span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  Calls<span class="sc">:</span> <span class="sc">%&gt;%</span></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  Execution halted</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  Execution halted</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Our package <code>CHECK</code> cannot find function <code>rounder()</code>. That may seem weird, since it is the only function in our package. The thing is - we have not explicitly told <code>roxygen2</code> to <code>export</code> our function, i.e.&nbsp;to make our function available outside of the package namespace. Simply adding <code>@export</code> to the <code>rounder.R</code> file would solve this error:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>...</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>...</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co">#' @author Gerko Vink \email{g.vink@uu.nl} and Hanne Oberman \email{h.i.oberman@uu.nl}</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export</span></span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples</span></span>
 <span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' library(magrittr)</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Try re-running the <code>CHECK</code> to see if you hit three green check marks (NO errors, warnings and notes). If all is well, you’ll see:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>── R CMD check results ────────────────────────────────────────── roundR <span class="dv">0</span>.<span class="fl">1.0</span> ────</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>── R CMD check results ────────────────────────────────────────── roundR <span class="dv">0</span>.<span class="fl">1.0</span> ────</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>Duration<span class="sc">:</span> <span class="fl">6.6</span>s</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span> errors ✔ <span class="sc">|</span> <span class="dv">0</span> warnings ✔ <span class="sc">|</span> <span class="dv">0</span> notes ✔</span>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>R CMD check succeeded</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>R CMD check succeeded</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>
@@ -584,11 +586,11 @@ System requirements
 <p>Now that we have a working package with a successful <code>R CMD check</code>, we might think about updating the version of the package. After all, a lot has changed since the last version got defined at the start of our development journey.</p>
 <p>The easiest means to increasing the version to <code>0.2.0</code> (indicating a minor update) is to use</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_version</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_version</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>You will be presented with something like:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>✔ Setting active project to <span class="st">'/Users/gerko/surfdrive/Werk/GitHub/roundR/roundR'</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>✔ Setting active project to <span class="st">'/Users/gerko/surfdrive/Werk/GitHub/roundR/roundR'</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>Current version is <span class="dv">0</span>.<span class="dv">1</span>.<span class="fl">1.</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>What should the new version be? (<span class="dv">0</span> to exit) </span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -609,7 +611,7 @@ System requirements
 <span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>Selection<span class="sc">:</span> <span class="dv">1</span></span>
 <span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>✔ Adding files</span>
-<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>✔ Making a commit with message <span class="st">'Increment version number to 0.2.0'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>✔ Making a commit with message <span class="st">'Increment version number to 0.2.0'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The question <code>Is it ok to commit it?</code> is related to <code>Git</code>. Please click to commit the version increase. For reasons of brevity and simplicity, we will leave a thorough discussion of incremental <code>Git</code> commits for now and demonstrate to use of <code>Git</code> and <code>GitHub</code> at the end of this walkthrough.</p>
 </section>
@@ -617,20 +619,20 @@ System requirements
 <h3 data-number="3.1.7" class="anchored" data-anchor-id="add-tests"><span class="header-section-number">3.1.7</span> Add tests</h3>
 <p>The next step for a mature package is to include tests. Every function should have functional tests. The <code>testthat</code> package is geared to that. Make sure that you have the <code>rounder.R</code> file open in the <code>Source</code> pane and run:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_test</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_test</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The proper structure for test files has now been created:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>✔ Adding <span class="st">'testthat'</span> to Suggests field <span class="cf">in</span> DESCRIPTION</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>✔ Adding <span class="st">'testthat'</span> to Suggests field <span class="cf">in</span> DESCRIPTION</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>✔ Setting Config<span class="sc">/</span>testthat<span class="sc">/</span>edition field <span class="cf">in</span> DESCRIPTION to <span class="st">'3'</span></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>✔ Creating <span class="st">'tests/testthat/'</span></span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>✔ Writing <span class="st">'tests/testthat.R'</span></span>
 <span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>✔ Writing <span class="st">'tests/testthat/test-rounder.R'</span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>• Modify <span class="st">'tests/testthat/test-rounder.R'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>• Modify <span class="st">'tests/testthat/test-rounder.R'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>You are asked to modify the <code>tests/testthat/test-rounder.R</code> file. Replace the example test with:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">"rounder works"</span>, {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">"rounder works"</span>, {</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  A <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">1.5</span>, <span class="fl">2.5</span>, <span class="fl">3.5</span>) <span class="sc">%&gt;%</span> <span class="fu">rounder</span>()</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  B <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.49</span>, <span class="fl">1.49</span>, <span class="fl">2.49</span>, <span class="fl">3.49</span>) <span class="sc">%&gt;%</span> <span class="fu">rounder</span>()</span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(A, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>))</span>
@@ -649,7 +651,7 @@ System requirements
 <span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>  D <span class="ot">&lt;-</span> vec2 <span class="sc">%&gt;%</span> <span class="fu">round</span>()</span>
 <span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_false</span>(<span class="fu">identical</span>(A, B))</span>
 <span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_false</span>(<span class="fu">identical</span>(C, D))</span>
-<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Click the <code>Test</code> button in the <code>build</code> pane:</p>
 <center>
@@ -658,10 +660,10 @@ System requirements
 <p>All test should pass, meaning that your <code>rounder()</code> function yields correct results (test 1) that differ fundamentally from the results obtained with <code>round()</code> (test 2).</p>
 <p>If test would fail, you’d be notified. For example</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">"rounder works"</span>, {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">"rounder works"</span>, {</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  A <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">1.5</span>, <span class="fl">2.5</span>, <span class="fl">3.5</span>) <span class="sc">%&gt;%</span> <span class="fu">rounder</span>()</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(A, <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  })</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>── Failure: rounder works ──────────────────────────────────────────────────────
 `A` not equal to c(4, 3, 2, 1).
@@ -725,17 +727,17 @@ When we commit the new <code>Readme</code> file to the <code>development</code> 
 </center>
 <p>The final step before we would put our package <em>out there</em> is to notify how users can refer to our package. Run the following code:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_citation</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_citation</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>which will create the necessary citation files for modification</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>✔ Creating <span class="st">'inst/'</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>✔ Creating <span class="st">'inst/'</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>✔ Writing <span class="st">'inst/CITATION'</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>• Modify <span class="st">'inst/CITATION'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>• Modify <span class="st">'inst/CITATION'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We can now simply grab the text and/or <code>bibtex</code> citation from <code>GitHub</code> and paste it into the <code>CITATION</code> file. The citation info cf.&nbsp;<code>R</code>-packages could be:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citHeader</span>(<span class="st">"To cite roundR in publications use:"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citHeader</span>(<span class="st">"To cite roundR in publications use:"</span>)</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">citEntry</span>(</span>
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">entry    =</span> <span class="st">"Manual"</span>,</span>
@@ -747,7 +749,7 @@ When we commit the new <code>Readme</code> file to the <code>development</code> 
 <span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">textVersion =</span> <span class="fu">paste</span>(</span>
 <span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a><span class="st">"Vink, G and Oberman, H.I. (2023). gerkovink/roundR: Version 0.2.0 - First release (Version v0.2.0) [Computer software]. https://doi.org/10.5281/zenodo.7668889"</span></span>
 <span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Modify this to your name and paste it into the <code>CITATION</code> file.</p>
 <center>
@@ -760,7 +762,7 @@ When we commit the new <code>Readme</code> file to the <code>development</code> 
 <h1 data-number="4"><span class="header-section-number">4</span> Installing your own package from GitHub</h1>
 <p>Go to <code>GitHub desktop</code>, and commit and push the changes to <code>GitHub</code>. Then run the following code block:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"gerkovink/roundR"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"gerkovink/roundR"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>where you replace <code>"gerkovink/roundR"</code> with your <code>GitHub</code> handle and repository name.</p>
 <center>
@@ -847,13 +849,14 @@ When we commit the new <code>Readme</code> file to the <code>development</code> 
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
