@@ -20,6 +20,9 @@ If you're programming in RStudio, and you want to load a package's website, just
 ```{r, eval=FALSE}
 usethis::browse_package("mice")
 ```
+
+<!-- TODO: make this usethis::usethis::use_pkgdown_github_pages()? -->
+
 ::: {.callout-tip}
 When asked which website to visit, choose `amices.org/mice`:
 ```

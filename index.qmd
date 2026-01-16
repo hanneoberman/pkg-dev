@@ -15,6 +15,15 @@ format:
     # embed-resources: true
 ---
 
+<!-- TODO: -->
+<!-- - remove problem base::round -->
+<!-- - add use_github -->
+<!-- - add webr? -->
+<!-- - check when hello.R is created -->
+<!-- - add load_all earlier -->
+<!-- - add roxygen gradually -->
+<!-- - redo output first check() (after editing base::round) -->
+<!-- - make pkgdown site available online -->
 
 ## Course website
 
